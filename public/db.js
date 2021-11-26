@@ -1,6 +1,6 @@
 // Handle Network Offline 
 
-const { post } = require("../routes/api");
+// const { post } = require("../routes/api");
 
 
 
@@ -20,7 +20,7 @@ request.onupgradeneeded = function (e) {
     db = e.target.result;
 
     // Check if an object store already exists on the database
-    if (db.objectStoreName.length === 0) {
+    if (db.objectStoreNames.length === 0) {
         db.createObjectStore('BudgetStore', { autoIncrement: true });
     } 
 };
@@ -33,7 +33,7 @@ request.onerror = function (e) {
 // Define the functionality for Saving data when the API route Fails 
 const checkDb = () => {
     // open transaction on the object store, with read and write privledges 
-    let transaction = db.transaction(['Budgestore'], readwrite);
+    let transaction = db.transaction(['BudgetStore'], 'readwrite');
     // create a reference to the object store by reading into the existing 
     const store = transaction.objectStore('BudgetStore');
     // get all records saved, 
@@ -65,7 +65,7 @@ const checkDb = () => {
 };
 
 // Success Handling 
-request.onsuccess = function () {
+request.onsuccess = function (e) {
     console.log('Found a success');
     // Change the value of db to the most current version 
     db = e.target.result

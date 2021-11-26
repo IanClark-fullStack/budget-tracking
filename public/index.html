@@ -42,37 +42,8 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <script src="db.js"></script>
   <script src="index.js"></script>
-  <script>
-    // Request database instance at Version 1
-    const request = window.indexedDB.open("budgetList", 1);
-
-    // Create an object store inside the onupgradeneeded method.
-    request.onupgradeneeded = ({ target }) => {
-      const db = target.result;
-      const objectStore = db.createObjectStore("budgetList");
-    };
-
-    // On success console the result.
-    request.onsuccess = event => {
-      console.log(request.result);
-    };
-  </script>
-
-  <script src="./service-worker.js"></script>
-  <script>
-    // If the browser allows,
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker
-        .register('service-worker.js') // Install 
-        .then((registration) => {
-          console.log('Service Worker Registered!');
-        })
-        .catch((error) => {
-          console.log('Service Worker Registration Failed!');
-          console.log(error);
-        });
-    }
-  </script>
+  
 </body>
 </html>
