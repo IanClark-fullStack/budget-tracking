@@ -23,7 +23,6 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/budget", {
 });
 
 
-mongodb+srv://ianc:rootadmin@cluster0.qi23r.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 // routes
 app.use(require("./routes/api.js"));
 
